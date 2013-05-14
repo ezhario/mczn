@@ -24,7 +24,7 @@ class User(models.Model):
 	district = models.CharField(max_length=20, choices=DISTRICT)
 	street = models.CharField(max_length=20)
 	building = models.CharField(max_length=20)
-	room = models.IntegerField()
+	room = models.IntegerField(max_length=4)
 	invited_by = models.ForeignKey('self')
 	invite_date = models.DateTimeField(auto_now=False, auto_now_add=True)
 	is_active = models.BooleanField(default=True)
