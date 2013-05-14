@@ -152,3 +152,14 @@ LOGGING = {
         },
     }
 }
+
+CRASH_NOTIFICATIONS_TO = ['nikita@nulana.com']
+
+FEEDBACK_TO = ['nikita@nulana.com']
+
+EMAIL_HOST = '127.0.0.1'
+
+import os
+if os.path.exists('/Users/ezhario/Documents/mczn/settings_override.py'):
+    print '>>> Some settings are overridden.'
+    execfile('/Users/ezhario/Documents/mczn/settings_override.py')
