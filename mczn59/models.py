@@ -14,7 +14,7 @@ DISTRICT = (('dz', 'Дзержинский'), ('in', 'Индустриальны
 
 class User(models.Model):
 	username = models.CharField(unique=True, max_length=100)
-	phone = models.CharField(unique=True, max_length=12)
+	phone = models.CharField(unique=True, max_length=10)
 	surname = models.CharField(max_length=100)
 	name = models.CharField(max_length=100)
 	patronymic = models.CharField(max_length=100)
@@ -28,11 +28,8 @@ class User(models.Model):
 	invited_by = models.ForeignKey('self')
 	invite_date = models.DateTimeField(auto_now=False, auto_now_add=True)
 	is_active = models.BooleanField(default=True)
+	is_admin = models.BooleanField(default=False)
+	password =  models.CharField(max_length=128)
 	penalty = models.IntegerField()
 	def __unicode__(self):
         	return self.username
-
-class UserAdmin(admin.ModelAdmin):
-	list_display = ('username', 'phone', 'surname', 'name', 'patronymic')
-
-admin.site.register(User, UserAdmin)
