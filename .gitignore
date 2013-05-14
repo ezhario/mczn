@@ -1,0 +1,21 @@
+ binary files
+*.pyc
+
+# editors swap files
+*.swp
+~*
+*~
+
+# sublime-text project files
+*.sublime*
+
+storage/
+log/
+
+# mac os x shit
+.DS_Store
+
+settings_override.py
+
+# secoority
+*.pem
