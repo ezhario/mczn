@@ -33,9 +33,17 @@ class User(models.Model):
 	is_admin = models.BooleanField(default=False)
 	password =  models.CharField(max_length=128)
 	penalty = models.IntegerField()
+
 	def __unicode__(self):
         	return self.username
 
 class EditForm(ModelForm):
      class Meta:
         model = User
+
+class Message(models.Model):
+	phone = models.CharField(max_length=11)
+	sent = models.DateTimeField()
+	received = models.DateTimeField()
+	body = models.TextField()
+	is_managed = models.BooleanField(default=False)
