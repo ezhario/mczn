@@ -1,0 +1,10 @@
+<h1>{{ user.username }}</h1>
+<ul>
+    <li>{{ user.surname }}</li>
+    <li>{{ user.name }}</li>
+    <li>{{ user.patronymic }}</li>
+    <li>{{ user.date_of_birth }}</li>
+    <li>+7{{ user.phone }}</li>
+    <li>{{ user.get_city_display }}, {{ user.get_district_display }} район, {{ user.street }}, {{ user.building }}, кв. {{user.room}}</li>
+    <li>Ответственный: <a href="{% url 'moto:detail' user.invited_by.id %}">{{ user.invited_by.username }}</a></li>
+</ul>

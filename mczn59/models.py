@@ -6,6 +6,8 @@ from django.contrib import admin
 import datetime
 from django.utils import timezone
 
+from django.forms import ModelForm
+
 # Create your models here.
 
 GENDER = (('none', 'Не определен'), ('male', 'Мужчина'), ('female', 'Женщина'))
@@ -33,3 +35,7 @@ class User(models.Model):
 	penalty = models.IntegerField()
 	def __unicode__(self):
         	return self.username
+
+class EditForm(ModelForm):
+     class Meta:
+        model = User
