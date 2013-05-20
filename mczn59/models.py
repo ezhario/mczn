@@ -47,3 +47,5 @@ class Message(models.Model):
 	received = models.DateTimeField()
 	body = models.TextField()
 	is_managed = models.BooleanField(default=False)
+	my_id = models.CharField(unique=True, max_length=1000)
+	
