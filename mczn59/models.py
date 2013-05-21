@@ -13,17 +13,18 @@ from django.forms import ModelForm
 GENDER = (('none', 'Не определен'), ('male', 'Мужчина'), ('female', 'Женщина'))
 CITY = (('perm', 'Пермь'), ('krasnokamsk', 'Краснокамск'), ('berez', 'Березники'), ('dobr', 'Добрянка'), ('pol', 'Полазна'))
 DISTRICT = (('dz', 'Дзержинский'), ('in', 'Индустриальный'), ('ki', 'Кировский'), ('le', 'Ленинский'), ('mo', 'Мотовилихинский'), ('or', 'Орджоникидзевский'), ('sv', 'Свердловский'))
+RESUS = (('I+', 'Первая, положительный'), ('I-', 'Первая отрицательный'), ('II+', 'Вторая, положительный'), ('II-', ' Вторая отрицательный'), ('III+', 'Третья, положительный'), ('III-', 'Третья отрицательный'), ('IV+', 'Четвертая, положительный'), ('IV-', 'Четвертая отрицательный'))
 
 class User(models.Model):
 	username = models.CharField(unique=True, max_length=100)
 	phone = models.CharField(unique=True, max_length=10)
 	surname = models.CharField(max_length=100)
 	name = models.CharField(max_length=100)
-	patronymic = models.CharField(max_length=100)
+	patronymic = models.CharField(max_length=100, blank=True)
 	date_of_birth  = models.DateField()
 	gender = models.CharField(choices=GENDER, max_length=10, default='none')
 	city = models.CharField(choices=CITY, max_length=20, default='perm')
-	district = models.CharField(max_length=20, choices=DISTRICT)
+	district = models.CharField(max_length=20, choices=DISTRICT, blank=True)
 	street = models.CharField(max_length=20)
 	building = models.CharField(max_length=20)
 	room = models.IntegerField(max_length=4)
@@ -31,8 +32,13 @@ class User(models.Model):
 	invite_date = models.DateTimeField(auto_now=False, auto_now_add=True)
 	is_active = models.BooleanField(default=True)
 	is_admin = models.BooleanField(default=False)
-	password =  models.CharField(max_length=128)
-	penalty = models.IntegerField()
+	password =  models.CharField(max_length=128, default='', blank=True)
+	penalty = models.IntegerField(default='0')
+	bike = models.CharField(max_length=100, blank=True)
+	bike_number = models.CharField(max_length=9, blank=True)
+	blood = models.CharField(choices=RESUS, max_length=4, blank=True)
+	relative_phone = models.CharField(max_length=10, blank=True)
+	relative_name = models.CharField(max_length=255, blank=True)
 
 	def __unicode__(self):
         	return self.username
