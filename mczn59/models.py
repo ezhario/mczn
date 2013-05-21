@@ -39,7 +39,6 @@ class User(models.Model):
 	blood = models.CharField(choices=RESUS, max_length=4, blank=True, verbose_name = u'Группа крови, резус-фактор')
 	relative_phone = models.CharField(max_length=10, blank=True, verbose_name = u'Телефон родственника')
 	relative_name = models.CharField(max_length=255, blank=True, verbose_name = u'Как зовут родственника')
-
 	def __unicode__(self):
         	return self.username
 
@@ -54,3 +53,5 @@ class Message(models.Model):
 	body = models.TextField(verbose_name = u'Текст SMS')
 	is_managed = models.BooleanField(default=False, verbose_name = u'Обработано')
 	my_id = models.CharField(unique=True, max_length=100)
+	def __unicode__(self):
+        	return self.body
