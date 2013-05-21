@@ -73,6 +73,8 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+STATIC_PREFIX = '/admin/static'
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -120,9 +122,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mczn59',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'mczn59',
 )
 
 # A sample logging configuration. The only tangible logging
