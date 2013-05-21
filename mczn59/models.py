@@ -28,7 +28,7 @@ class User(models.Model):
 	street = models.CharField(max_length=20, verbose_name = u'Улица')
 	building = models.CharField(max_length=20, verbose_name = u'Номер дома')
 	room = models.IntegerField(max_length=4, verbose_name = u'Номер квартиры')
-	invited_by = models.ForeignKey('self', verbose_name = u'Кто ответственный?')
+	invited_by = models.ForeignKey('self', verbose_name = u'Кто добавил?')
 	invite_date = models.DateTimeField(auto_now=False, auto_now_add=True, verbose_name = u'Когда пригласили?')
 	is_active = models.BooleanField(default=True, verbose_name = u'Отсылать сообщения')
 	is_admin = models.BooleanField(default=False, verbose_name = u'Администратор')
@@ -48,9 +48,9 @@ class EditForm(ModelForm):
         model = User
 
 class Message(models.Model):
-	phone = models.CharField(max_length=11)
-	sent = models.DateTimeField()
-	received = models.DateTimeField()
-	body = models.TextField()
-	is_managed = models.BooleanField(default=False)
+	phone = models.CharField(max_length=11, verbose_name = u'Номер телефона')
+	sent = models.DateTimeField(verbose_name = u'Отправлено')
+	received = models.DateTimeField(verbose_name = u'Принято')
+	body = models.TextField(verbose_name = u'Текст SMS')
+	is_managed = models.BooleanField(default=False, verbose_name = u'Обработано')
 	my_id = models.CharField(unique=True, max_length=100)
