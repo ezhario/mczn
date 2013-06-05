@@ -17,7 +17,7 @@ RESUS = (('I+', 'Первая, положительный'), ('I-', 'Перва�
 
 class User(models.Model):
 	username = models.CharField(unique=True, max_length=100, verbose_name = u'Никнейм')
-	phone = models.CharField(unique=True, max_length=10, verbose_name = u'Номер телефона, без +7 или 8')
+	phone = models.CharField(unique=True, max_length=10, verbose_name = u'Телефон')
 	surname = models.CharField(max_length=100, verbose_name = u'Фамилия')
 	name = models.CharField(max_length=100, verbose_name = u'Имя')
 	patronymic = models.CharField(max_length=100, blank=True, verbose_name = u'Отчество')
@@ -30,21 +30,18 @@ class User(models.Model):
 	room = models.IntegerField(max_length=4, verbose_name = u'Номер квартиры')
 	invited_by = models.ForeignKey('self', verbose_name = u'Кто добавил?')
 	invite_date = models.DateTimeField(auto_now=False, auto_now_add=True, verbose_name = u'Когда пригласили?')
-	is_active = models.BooleanField(default=True, verbose_name = u'Отсылать сообщения')
-	is_admin = models.BooleanField(default=False, verbose_name = u'Администратор')
-	password =  models.CharField(max_length=128, default='', blank=True, verbose_name = u'Пароль, если админ')
-	penalty = models.IntegerField(default='0', verbose_name = u'Штрафные баллы (6 - отключен)')
+	is_active = models.BooleanField(default=True, verbose_name = u'Обрабатывать его сообщения')
+	add_new = models.BooleanField(default=True, verbose_name = u'Может добавлять новых')
+	penalty = models.BooleanField(default=True, verbose_name = u'Проштрафился')
 	bike = models.CharField(max_length=100, blank=True, verbose_name = u'Марка-модель мотоцикла')
 	bike_number = models.CharField(max_length=9, blank=True, verbose_name = u'Госномер мотоцикла')
 	blood = models.CharField(choices=RESUS, max_length=4, blank=True, verbose_name = u'Группа крови, резус-фактор')
 	relative_phone = models.CharField(max_length=10, blank=True, verbose_name = u'Телефон родственника')
 	relative_name = models.CharField(max_length=255, blank=True, verbose_name = u'Как зовут родственника')
+	photo = models.FileField(upload_to='photo', max_length=100, blank=True, verbose_name = u'Фотоморда')
+	codename = models.CharField(max_length=255, blank=True, verbose_name = u'Кодовое слово')
 	def __unicode__(self):
         	return self.username
-
-class EditForm(ModelForm):
-     class Meta:
-        model = User
 
 class Message(models.Model):
 	phone = models.CharField(max_length=11, verbose_name = u'Номер телефона')
