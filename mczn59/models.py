@@ -32,7 +32,7 @@ class User(models.Model):
 	invite_date = models.DateTimeField(auto_now=False, auto_now_add=True, verbose_name = u'Когда пригласили?')
 	is_active = models.BooleanField(default=True, verbose_name = u'Обрабатывать его сообщения')
 	add_new = models.BooleanField(default=True, verbose_name = u'Может добавлять новых')
-	penalty = models.BooleanField(default=True, verbose_name = u'Проштрафился')
+	penalty = models.BooleanField(default=False, verbose_name = u'Проштрафился')
 	bike = models.CharField(max_length=100, blank=True, verbose_name = u'Марка-модель мотоцикла')
 	bike_number = models.CharField(max_length=9, blank=True, verbose_name = u'Госномер мотоцикла')
 	blood = models.CharField(choices=RESUS, max_length=4, blank=True, verbose_name = u'Группа крови, резус-фактор')
