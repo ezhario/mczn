@@ -8,6 +8,18 @@ from django.utils import timezone
 
 from django.forms import ModelForm
 
+import os
+import uuid
+def get_photo_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    return os.path.join('upload/photo', filename)
+
+def get_anketa_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    return os.path.join('upload/anketa', filename)
+
 # Create your models here.
 
 GENDER = (('none', 'Не определен'), ('male', 'Мужчина'), ('female', 'Женщина'))
@@ -38,7 +50,14 @@ class User(models.Model):
 	blood = models.CharField(choices=RESUS, max_length=4, blank=True, verbose_name = u'Группа крови, резус-фактор')
 	relative_phone = models.CharField(max_length=10, blank=True, verbose_name = u'Телефон родственника')
 	relative_name = models.CharField(max_length=255, blank=True, verbose_name = u'Как зовут родственника')
-	photo = models.FileField(upload_to='photo', max_length=100, blank=True, verbose_name = u'Фотоморда')
+	photo = models.FileField(upload_to=get_photo_path,
+                        null=True,
+                        blank=True,
+                        verbose_name=(u'Фотоморда'))
+	anketa = models.FileField(upload_to=get_anketa_path,
+                        null=True,
+                        blank=True,
+                        verbose_name=(u'Скан анкеты'))
 	codename = models.CharField(max_length=255, blank=True, verbose_name = u'Кодовое слово')
 	def __unicode__(self):
         	return self.username
