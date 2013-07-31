@@ -1,4 +1,4 @@
-{% load i18n static %}
+{% load i18n static requests %}
 {% get_static_prefix as STATIC_PREFIX %}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -65,7 +65,13 @@
       <div class="row-fluid ">
         <div class="top_bar_stats to_hide_tablet">
           <div class="stats">
-            <span class="title">Баланс на SMS-гейте:</span> +190,77 рублей <span class="bar_1"></span>
+            <span class="title">Баланс на SMS-гейте:</span> 
+              <script>
+                $.post('http://smsc.ru/sys/balance.php?login=moto59&psw=moto59ru', function(data) {
+                  $('.result').html(data);
+                );
+              </script> 
+            рублей <span class="bar_1"></span>
           </div>
           <div class="stats">
             <span class="title">Отправлено SMS:</span> 15 штук <span class="bar_2"></span>
