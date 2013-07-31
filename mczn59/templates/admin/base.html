@@ -214,6 +214,7 @@
 <script src="{{ STATIC_PREFIX }}js/plugins/justGage.1.0.1/resources/js/justgage.1.0.1.min.js"></script>
 
 <script src="{{ STATIC_PREFIX }}js/scripts.js"></script>
+<script src="{{ STATIC_PREFIX }}js/xdomainajax.js"></script>
 <script language="javascript" type="text/javascript" src="{{ STATIC_PREFIX }}js/jnavigate.jquery.min.js"></script>
 <script type='text/javascript'>
     $(window).load(function() {
@@ -233,12 +234,16 @@
       window.location = newLocation;
       }
 
+
+
       $.ajax({
-            url: 'http://smsc.ru/sys/balance.php?',
-            dataType: 'jsonp',
-                data: {login: 'moto59', psw: 'moto59ru'},
-                jsonpCallback: '',
-        });
+          url: 'http://smsc.ru/sys/balance.php?login=moto59&psw=moto59ru',
+          type: 'GET',
+          success: function(res) {
+              var headline = $(res.responseText).text();
+              alert($(res.responseText));
+          }
+      });
 
     });
     </script>
