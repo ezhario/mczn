@@ -13,12 +13,12 @@ import uuid
 def get_photo_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (uuid.uuid4(), ext)
-    return os.path.join('upload/photo', filename)
+    return os.path.join('photo', filename)
 
 def get_anketa_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (uuid.uuid4(), ext)
-    return os.path.join('upload/anketa', filename)
+    return os.path.join('anketa', filename)
 
 # Create your models here.
 
