@@ -66,7 +66,9 @@
         <div class="top_bar_stats to_hide_tablet">
           <div class="stats">
             <span class="title">Баланс на SMS-гейте:</span> 
-            <span class="sms-bal"></span>
+            <span class="sms-bal">
+
+            </span>
             рублей <span class="bar_1"></span>
           </div>
           <div class="stats">
@@ -231,20 +233,12 @@
       window.location = newLocation;
       }
 
-             $.get(
-                "//smsc.ru/sys/balance.php",
-                {
-                  param1: "login=moto59",
-                  param2: "psw=moto59ru"
-                },
-                onAjaxSuccess
-              );
-               
-              function onAjaxSuccess(data)
-              {
-                // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
-                alert(data);
-              }
+      $.ajax({
+            url: 'http://smsc.ru?sys/balance.php=?',
+            dataType: 'json',
+                data: {login: 'moto59', psw: 'moto59ru'},
+                jsonpCallback: 'alert(data)',
+        });
 
     });
     </script>
