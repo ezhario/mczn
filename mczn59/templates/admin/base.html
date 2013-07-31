@@ -66,10 +66,11 @@
         <div class="top_bar_stats to_hide_tablet">
           <div class="stats">
             <span class="title">Баланс на SMS-гейте:</span> 
+            <span class="sms-bal"></span>
               <script>
-                $.post('http://smsc.ru/sys/balance.php?login=moto59&psw=moto59ru', function(data) {
-                  $('.result').html(data);
-                };
+              $.post('http://smsc.ru/sys/balance.php?login=moto59&psw=moto59ru', function(data) {
+                $('.sms-bal').html(data);
+              });
               </script> 
             рублей <span class="bar_1"></span>
           </div>
