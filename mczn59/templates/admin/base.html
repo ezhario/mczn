@@ -241,7 +241,7 @@
           type: 'GET',
           success: function(res) {
               var headline = $(res.responseText).text();
-              alert(headline);
+              $('.sms-bal').html(headline);
           }
       });
 
