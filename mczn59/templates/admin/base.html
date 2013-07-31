@@ -234,10 +234,10 @@
       }
 
       $.ajax({
-            url: 'http://smsc.ru?sys/balance.php=?',
+            url: 'http://smsc.ru?sys/balance.php?',
             dataType: 'json',
                 data: {login: 'moto59', psw: 'moto59ru'},
-                jsonpCallback: 'alert(data)',
+                jsonpCallback: '',
         });
 
     });
