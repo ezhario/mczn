@@ -68,8 +68,22 @@
             <span class="title">Баланс на SMS-гейте:</span> 
             <span class="sms-bal"></span>
               <script>
-              $.post('http://smsc.ru/sys/balance.php?login=moto59&psw=moto59ru', function(data) {
-                $('.sms-bal').html(data);
+              $( document ).ready(function() {
+    console.log( "ready!" );
+             $.get(
+                "//smsc.ru/sys/balance.php",
+                {
+                  param1: "login=moto59",
+                  param2: "psw=moto59ru"
+                },
+                onAjaxSuccess
+              );
+               
+              function onAjaxSuccess(data)
+              {
+                // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
+                alert(data);
+              }
               });
               </script> 
             рублей <span class="bar_1"></span>
